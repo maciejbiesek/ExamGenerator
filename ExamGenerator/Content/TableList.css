@@ -1,0 +1,62 @@
+﻿#tables ul, .tabelRows {  /*$("body").click(function(){$(".treeview li").css("list-style", "none")})*/
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.tabelRows li { 
+    list-style-type: none;
+	margin: 0;
+	padding: 3px 0pt 3px 19px;
+    vertical-align: top;
+}
+/*
+.tabelRows li:first-of-type {background:#B0C4DE !important;} 
+.tabelRows li:nth-child(odd) {background:#d4d4f7 ;}  
+.tabelRows li:nth-child(even) {background:Lavender;}
+    */
+
+
+span {
+    vertical-align: top;
+}
+
+.mainHeader {
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.topHeader{
+    font-weight:bolder;
+    color:darkblue;
+}
+
+.logo { /*wlasciwosci obrazka logo*/
+    max-width:300px; 
+    max-height:50px;
+}
+
+h3.title {
+    font-weight: 600;
+}
+
+div.editor-label{
+    font-weight: bold;
+}
+
+h1.name {
+    margin-top: 0.7em;
+}
+
+.userNameAdm, .deleteAdm {
+    display: inline-block;
+    font-family: Calibri;
+}
+
+.deleteAdm {
+     text-align: center;
+}
+
+.userNameAdm                    {    width: 50%;}
+.deleteAdm                      {    width: 20%;}
+

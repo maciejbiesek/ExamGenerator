@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="generator_kolokwiowModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EXAMS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExamDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="TAGS" Relationship="Self.TASK_ON_EXAM" FromRole="EXAMS" ToRole="TAGS" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TAGS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EXAMS" Relationship="Self.TASK_ON_EXAM" FromRole="TAGS" ToRole="EXAMS" />
+    <NavigationProperty Name="TASKS" Relationship="Self.TASK_ON_TAG" FromRole="TAGS" ToRole="TASKS" />
+  </EntityType>
+  <EntityType Name="TASKS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TAGS" Relationship="Self.TASK_ON_TAG" FromRole="TASKS" ToRole="TAGS" />
+  </EntityType>
+  <Association Name="TASK_ON_EXAM">
+    <End Role="TAGS" Type="Self.TAGS" Multiplicity="*" />
+    <End Role="EXAMS" Type="Self.EXAMS" Multiplicity="*" />
+  </Association>
+  <Association Name="TASK_ON_TAG">
+    <End Role="TAGS" Type="Self.TAGS" Multiplicity="*" />
+    <End Role="TASKS" Type="Self.TASKS" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="generator_kolokwiowEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EXAMS" EntityType="Self.EXAMS" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TAGS" EntityType="Self.TAGS" />
+    <EntitySet Name="TASKS" EntityType="Self.TASKS" />
+    <AssociationSet Name="TASK_ON_EXAM" Association="Self.TASK_ON_EXAM">
+      <End Role="TAGS" EntitySet="TAGS" />
+      <End Role="EXAMS" EntitySet="EXAMS" />
+    </AssociationSet>
+    <AssociationSet Name="TASK_ON_TAG" Association="Self.TASK_ON_TAG">
+      <End Role="TAGS" EntitySet="TAGS" />
+      <End Role="TASKS" EntitySet="TASKS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

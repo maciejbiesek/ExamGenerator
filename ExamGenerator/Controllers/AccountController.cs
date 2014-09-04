@@ -13,7 +13,7 @@ using ExamGenerator.Models;
 
 namespace ExamGenerator.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
