@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="generator_kolokwiowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EXAMS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="ExamDate" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TAGS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TASK_ON_EXAM">
+          <Key>
+            <PropertyRef Name="IdTask" />
+            <PropertyRef Name="IdExam" />
+          </Key>
+          <Property Name="IdTask" Type="int" Nullable="false" />
+          <Property Name="IdExam" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TASK_ON_TAG">
+          <Key>
+            <PropertyRef Name="IdTag" />
+            <PropertyRef Name="IdTask" />
+          </Key>
+          <Property Name="IdTag" Type="int" Nullable="false" />
+          <Property Name="IdTask" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TASKS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Content" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="Id_exam_key">
+          <End Role="TAGS" Type="Self.TAGS" Multiplicity="1" />
+          <End Role="TASK_ON_EXAM" Type="Self.TASK_ON_EXAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAGS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TASK_ON_EXAM">
+              <PropertyRef Name="IdExam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_tag_key">
+          <End Role="TAGS" Type="Self.TAGS" Multiplicity="1" />
+          <End Role="TASK_ON_TAG" Type="Self.TASK_ON_TAG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAGS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TASK_ON_TAG">
+              <PropertyRef Name="IdTag" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_task_exam_key">
+          <End Role="EXAMS" Type="Self.EXAMS" Multiplicity="1" />
+          <End Role="TASK_ON_EXAM" Type="Self.TASK_ON_EXAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXAMS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TASK_ON_EXAM">
+              <PropertyRef Name="IdTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_task_tag_key">
+          <End Role="TASKS" Type="Self.TASKS" Multiplicity="1" />
+          <End Role="TASK_ON_TAG" Type="Self.TASK_ON_TAG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TASKS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TASK_ON_TAG">
+              <PropertyRef Name="IdTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="generator_kolokwiowModelStoreContainer">
+          <EntitySet Name="EXAMS" EntityType="Self.EXAMS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAGS" EntityType="Self.TAGS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TASK_ON_EXAM" EntityType="Self.TASK_ON_EXAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TASK_ON_TAG" EntityType="Self.TASK_ON_TAG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TASKS" EntityType="Self.TASKS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Id_exam_key" Association="Self.Id_exam_key">
+            <End Role="TAGS" EntitySet="TAGS" />
+            <End Role="TASK_ON_EXAM" EntitySet="TASK_ON_EXAM" />
+          </AssociationSet>
+          <AssociationSet Name="Id_tag_key" Association="Self.Id_tag_key">
+            <End Role="TAGS" EntitySet="TAGS" />
+            <End Role="TASK_ON_TAG" EntitySet="TASK_ON_TAG" />
+          </AssociationSet>
+          <AssociationSet Name="Id_task_exam_key" Association="Self.Id_task_exam_key">
+            <End Role="EXAMS" EntitySet="EXAMS" />
+            <End Role="TASK_ON_EXAM" EntitySet="TASK_ON_EXAM" />
+          </AssociationSet>
+          <AssociationSet Name="Id_task_tag_key" Association="Self.Id_task_tag_key">
+            <End Role="TASKS" EntitySet="TASKS" />
+            <End Role="TASK_ON_TAG" EntitySet="TASK_ON_TAG" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="generator_kolokwiowModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EXAMS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExamDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TAGS" Relationship="Self.TASK_ON_EXAM" FromRole="EXAMS" ToRole="TAGS" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TAGS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EXAMS" Relationship="Self.TASK_ON_EXAM" FromRole="TAGS" ToRole="EXAMS" />
+          <NavigationProperty Name="TASKS" Relationship="Self.TASK_ON_TAG" FromRole="TAGS" ToRole="TASKS" />
+        </EntityType>
+        <EntityType Name="TASKS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TAGS" Relationship="Self.TASK_ON_TAG" FromRole="TASKS" ToRole="TAGS" />
+        </EntityType>
+        <Association Name="TASK_ON_EXAM">
+          <End Role="TAGS" Type="Self.TAGS" Multiplicity="*" />
+          <End Role="EXAMS" Type="Self.EXAMS" Multiplicity="*" />
+        </Association>
+        <Association Name="TASK_ON_TAG">
+          <End Role="TAGS" Type="Self.TAGS" Multiplicity="*" />
+          <End Role="TASKS" Type="Self.TASKS" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="generator_kolokwiowEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EXAMS" EntityType="Self.EXAMS" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TAGS" EntityType="Self.TAGS" />
+          <EntitySet Name="TASKS" EntityType="Self.TASKS" />
+          <AssociationSet Name="TASK_ON_EXAM" Association="Self.TASK_ON_EXAM">
+            <End Role="TAGS" EntitySet="TAGS" />
+            <End Role="EXAMS" EntitySet="EXAMS" />
+          </AssociationSet>
+          <AssociationSet Name="TASK_ON_TAG" Association="Self.TASK_ON_TAG">
+            <End Role="TAGS" EntitySet="TAGS" />
+            <End Role="TASKS" EntitySet="TASKS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="generator_kolokwiowModelStoreContainer" CdmEntityContainer="generator_kolokwiowEntities">
+          <EntitySetMapping Name="EXAMS">
+            <EntityTypeMapping TypeName="generator_kolokwiowModel.EXAMS">
+              <MappingFragment StoreEntitySet="EXAMS">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="generator_kolokwiowModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAGS">
+            <EntityTypeMapping TypeName="generator_kolokwiowModel.TAGS">
+              <MappingFragment StoreEntitySet="TAGS">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TASKS">
+            <EntityTypeMapping TypeName="generator_kolokwiowModel.TASKS">
+              <MappingFragment StoreEntitySet="TASKS">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TASK_ON_EXAM" TypeName="generator_kolokwiowModel.TASK_ON_EXAM" StoreEntitySet="TASK_ON_EXAM">
+            <EndProperty Name="TAGS">
+              <ScalarProperty Name="Id" ColumnName="IdExam" />
+            </EndProperty>
+            <EndProperty Name="EXAMS">
+              <ScalarProperty Name="Id" ColumnName="IdTask" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TASK_ON_TAG" TypeName="generator_kolokwiowModel.TASK_ON_TAG" StoreEntitySet="TASK_ON_TAG">
+            <EndProperty Name="TAGS">
+              <ScalarProperty Name="Id" ColumnName="IdTag" />
+            </EndProperty>
+            <EndProperty Name="TASKS">
+              <ScalarProperty Name="Id" ColumnName="IdTask" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

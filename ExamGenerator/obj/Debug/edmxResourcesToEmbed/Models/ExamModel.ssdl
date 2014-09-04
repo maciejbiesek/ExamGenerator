@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="generator_kolokwiowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EXAMS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="ExamDate" Type="date" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TAGS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TASK_ON_EXAM">
+    <Key>
+      <PropertyRef Name="IdTask" />
+      <PropertyRef Name="IdExam" />
+    </Key>
+    <Property Name="IdTask" Type="int" Nullable="false" />
+    <Property Name="IdExam" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TASK_ON_TAG">
+    <Key>
+      <PropertyRef Name="IdTag" />
+      <PropertyRef Name="IdTask" />
+    </Key>
+    <Property Name="IdTag" Type="int" Nullable="false" />
+    <Property Name="IdTask" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TASKS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Content" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="Id_exam_key">
+    <End Role="TAGS" Type="Self.TAGS" Multiplicity="1" />
+    <End Role="TASK_ON_EXAM" Type="Self.TASK_ON_EXAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAGS">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TASK_ON_EXAM">
+        <PropertyRef Name="IdExam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Id_tag_key">
+    <End Role="TAGS" Type="Self.TAGS" Multiplicity="1" />
+    <End Role="TASK_ON_TAG" Type="Self.TASK_ON_TAG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAGS">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TASK_ON_TAG">
+        <PropertyRef Name="IdTag" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Id_task_exam_key">
+    <End Role="EXAMS" Type="Self.EXAMS" Multiplicity="1" />
+    <End Role="TASK_ON_EXAM" Type="Self.TASK_ON_EXAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EXAMS">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TASK_ON_EXAM">
+        <PropertyRef Name="IdTask" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Id_task_tag_key">
+    <End Role="TASKS" Type="Self.TASKS" Multiplicity="1" />
+    <End Role="TASK_ON_TAG" Type="Self.TASK_ON_TAG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TASKS">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TASK_ON_TAG">
+        <PropertyRef Name="IdTask" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="generator_kolokwiowModelStoreContainer">
+    <EntitySet Name="EXAMS" EntityType="Self.EXAMS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TAGS" EntityType="Self.TAGS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TASK_ON_EXAM" EntityType="Self.TASK_ON_EXAM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TASK_ON_TAG" EntityType="Self.TASK_ON_TAG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TASKS" EntityType="Self.TASKS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="Id_exam_key" Association="Self.Id_exam_key">
+      <End Role="TAGS" EntitySet="TAGS" />
+      <End Role="TASK_ON_EXAM" EntitySet="TASK_ON_EXAM" />
+    </AssociationSet>
+    <AssociationSet Name="Id_tag_key" Association="Self.Id_tag_key">
+      <End Role="TAGS" EntitySet="TAGS" />
+      <End Role="TASK_ON_TAG" EntitySet="TASK_ON_TAG" />
+    </AssociationSet>
+    <AssociationSet Name="Id_task_exam_key" Association="Self.Id_task_exam_key">
+      <End Role="EXAMS" EntitySet="EXAMS" />
+      <End Role="TASK_ON_EXAM" EntitySet="TASK_ON_EXAM" />
+    </AssociationSet>
+    <AssociationSet Name="Id_task_tag_key" Association="Self.Id_task_tag_key">
+      <End Role="TASKS" EntitySet="TASKS" />
+      <End Role="TASK_ON_TAG" EntitySet="TASK_ON_TAG" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
