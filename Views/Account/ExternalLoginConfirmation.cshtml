@@ -1,0 +1,36 @@
+﻿@model ExamGenerator.Models.RegisterExternalLoginModel
+@{
+    ViewBag.Title = "Zarejestruj";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Skojarz swoje konto @ViewBag.ProviderDisplayName.</h2>
+</hgroup>
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Formularz kojarzenia</legend>
+        <p>
+            Pomyślne uwierzytelnienie za pomocą konta <strong>@ViewBag.ProviderDisplayName</strong>.
+            Wprowadź poniżej nazwę użytkownika dla tej witryny i kliknij przycisk Potwierdź, aby ukończyć
+            logowanie.
+        </p>
+        <ol>
+            <li class="name">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+        </ol>
+        @Html.HiddenFor(m => m.ExternalLoginData)
+        <input type="submit" value="Zarejestruj" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
