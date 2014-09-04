@@ -18,6 +18,9 @@ namespace ExamGenerator
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/listScript").Include(
+                        "~/Scripts/TableList.js"));
+
             // Użyj wersji deweloperskiej biblioteki Modernizr do nauki i opracowywania rozwiązań. Następnie, kiedy wszystko będzie
             // gotowe do produkcji, wybierz tylko potrzebne testy za pomocą narzędzia kompilacji z witryny http://modernizr.com.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

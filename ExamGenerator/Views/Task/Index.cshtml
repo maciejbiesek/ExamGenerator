@@ -1,5 +1,45 @@
-﻿@{
+﻿@model List<ExamGenerator.Models.TASKS>
+
+@{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@section Scripts{
+    @Scripts.Render("~/bundles/listScript")
+}
+
+<hgroup class="title">
+    <h1>Dostępne tagi</h1>
+</hgroup>
+
+<div id="tables">
+    <ul>
+        <li>
+            <span class="mainHeader">
+                <span class="columnName">Nazwa</span>
+                <span class="deleteOption">@Html.ActionLink("Dodaj nowy", "x", "x", routeValues: null, htmlAttributes: new { id = "registerLink" })</span>
+            </span>
+        </li>
+        <li>
+            <ul class="tabelRows">
+                <li>
+                    <span class="topHeader">
+                        <span class="columnName">Nazwa</span>
+                        <span class="deleteOption">Usuń</span>
+                    </span>
+                </li>
+                @foreach (var task in Model)
+                {
+                    <li>
+                        <span class="columnName">@task.Name</span>
+                        <span class="deleteOption">@Html.ActionLink("X", "DeleteExam", "Exam", new { id = task.Id }, new { @class = "delete-link" })</span>
+                    </li>
+                }
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="delete-dialog" title="Usuwanie">
+    <p>Jesteś pewien, że chcesz to usunąć?</p>
+</div>

@@ -31,11 +31,6 @@ span {
     color:darkblue;
 }
 
-.logo { /*wlasciwosci obrazka logo*/
-    max-width:300px; 
-    max-height:50px;
-}
-
 h3.title {
     font-weight: 600;
 }
@@ -48,15 +43,15 @@ h1.name {
     margin-top: 0.7em;
 }
 
-.userNameAdm, .deleteAdm {
+.columnName, .deleteOption{
     display: inline-block;
     font-family: Calibri;
 }
 
-.deleteAdm {
+.deleteOption {
      text-align: center;
 }
 
-.userNameAdm                    {    width: 50%;}
-.deleteAdm                      {    width: 20%;}
+.columnName                    {    width: 50%;}
+.deleteOption                  {    width: 20%;}
 

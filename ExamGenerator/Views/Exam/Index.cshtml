@@ -5,36 +5,7 @@
 }
 
 @section Scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var deleteLinkObj;
-            $('.delete-link').click(function () {
-                deleteLinkObj = $(this);
-                $('#delete-dialog').dialog('open');
-                return false;
-            });
-
-            $('#delete-dialog').dialog({
-                autoOpen: false, width: 400, resizable: false, modal: true,
-                buttons: {
-                    "Usuń": function () {
-                        $.post(deleteLinkObj[0].href, function (data) {
-                            if (data == '@Boolean.TrueString') {
-                                deleteLinkObj.closest("li").hide('fast');
-                            }
-                            else {
-                                //(opcjonalnie) wyswietl blad
-                            }
-                        });
-                        $(this).dialog("close"); //
-                    },
-                    "Anuluj": function () {
-                        $(this).dialog("close");
-                    }
-                }
-            });
-        });
-    </script>
+    @Scripts.Render("~/bundles/listScript")
 }
 
 <hgroup class="title">
@@ -45,23 +16,23 @@
     <ul>
         <li>
             <span class="mainHeader">
-                <span class="userNameAdm">Użytkownicy</span>
-                <span class="deleteAdm">@Html.ActionLink("Generuj", "x", "x", routeValues: null, htmlAttributes: new { id = "registerLink" })</span>
+                <span class="columnName">Nazwa</span>
+                <span class="deleteOption">@Html.ActionLink("Generuj", "x", "x", routeValues: null, htmlAttributes: new { id = "registerLink" })</span>
             </span>
         </li>
         <li>
             <ul class="tabelRows">
                 <li>
                     <span class="topHeader">
-                        <span class="userNameAdm">Nazwa</span>
-                        <span class="deleteAdm">Usuń</span>
+                        <span class="columnName">Nazwa</span>
+                        <span class="deleteOption">Usuń</span>
                     </span>
                 </li>
                 @foreach (var exam in Model)
                 {
                     <li>
-                        <span class="userNameAdm">@exam.Name</span>
-                        <span class="deleteAdm">@Html.ActionLink("X", "DeleteExam", "Exam", new { id = exam.Id}, new { @class = "delete-link" })</span>
+                        <span class="columnName">@exam.Name</span>
+                        <span class="deleteOption">@Html.ActionLink("X", "DeleteExam", "Exam", new { id = exam.Id }, new { @class = "delete-link" })</span>
 
                     </li>
                 }
