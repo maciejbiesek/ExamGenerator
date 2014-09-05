@@ -14,7 +14,25 @@ namespace ExamGenerator.Controllers
         public ActionResult Index()
         {
             List<TASKS> getTasks = genKolEnt.TASKS.Select(t => t).ToList();
-            return View(getTasks);
+            List<TaskModel> getModelTasks = new List<TaskModel>();
+
+            foreach(var task in getTasks){
+                string tagsList = "";
+                foreach(var tag in task.TAGS){
+                    tagsList += tag.Name + ", ";
+                }
+                tagsList = tagsList.Remove(tagsList.Length - 2);
+
+                TaskModel taskRow = new TaskModel();
+                taskRow.id = task.Id;
+                taskRow.name = task.Name;
+                taskRow.tags = tagsList;
+
+                getModelTasks.Add(taskRow);
+            }
+
+
+            return View(getModelTasks);
         }
 
     }

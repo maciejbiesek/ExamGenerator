@@ -10,6 +10,9 @@
 	padding: 3px 0pt 3px 19px;
     vertical-align: top;
 }
+
+
+
 /*
 .tabelRows li:first-of-type {background:#B0C4DE !important;} 
 .tabelRows li:nth-child(odd) {background:#d4d4f7 ;}  
@@ -43,10 +46,11 @@ h1.name {
     margin-top: 0.7em;
 }
 
-.columnName, .deleteOption{
+.columnName, .deleteOption, .columnTagsInTags{
     display: inline-block;
     font-family: Calibri;
 }
+
 
 .deleteOption {
      text-align: center;
@@ -54,4 +58,14 @@ h1.name {
 
 .columnName                    {    width: 50%;}
 .deleteOption                  {    width: 20%;}
+.columnTagsInTags              {    width: 90%;
+                                    padding: 0px 3px 10px 19px;
+}
 
+.logo{
+     height: 50px;
+}
+
+hgroup.title{
+    text-align: center;
+}

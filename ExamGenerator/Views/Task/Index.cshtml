@@ -1,4 +1,4 @@
-﻿@model List<ExamGenerator.Models.TASKS>
+﻿@model List<ExamGenerator.Models.TaskModel>
 
 @{
     ViewBag.Title = "Index";
@@ -9,17 +9,13 @@
 }
 
 <hgroup class="title">
-    <h1>Dostępne tagi</h1>
+    <h1>Dostępne zadania</h1>
 </hgroup>
+
+<span>@Html.ActionLink("Dodaj nowy", "x", "x", routeValues: null, htmlAttributes: new { id = "registerLink" })</span>
 
 <div id="tables">
     <ul>
-        <li>
-            <span class="mainHeader">
-                <span class="columnName">Nazwa</span>
-                <span class="deleteOption">@Html.ActionLink("Dodaj nowy", "x", "x", routeValues: null, htmlAttributes: new { id = "registerLink" })</span>
-            </span>
-        </li>
         <li>
             <ul class="tabelRows">
                 <li>
@@ -31,8 +27,11 @@
                 @foreach (var task in Model)
                 {
                     <li>
-                        <span class="columnName">@task.Name</span>
-                        <span class="deleteOption">@Html.ActionLink("X", "DeleteExam", "Exam", new { id = task.Id }, new { @class = "delete-link" })</span>
+                        <span class="columnName">@task.name</span>
+                        <span class="deleteOption">@Html.ActionLink("X", "DeleteExam", "Exam", new { id = task.id }, new { @class = "delete-link" })</span>
+                    </li>
+                    <li>
+                        <span class="columnTagsInTags"><b>Powiązane tagi:</b> @task.tags</span>
                     </li>
                 }
             </ul>
