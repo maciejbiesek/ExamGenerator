@@ -217,7 +217,6 @@
     <Compile Include="Models\TAGS.cs">
       <DependentUpon>ExamModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\TASKS.cs">
       <DependentUpon>ExamModel.tt</DependentUpon>
     </Compile>
@@ -354,7 +353,6 @@
     <Content Include="Views\Tag\Index.cshtml" />
     <Content Include="Views\Exam\Index.cshtml" />
     <Content Include="Views\Task\Index.cshtml" />
-    <Content Include="Views\Task\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
