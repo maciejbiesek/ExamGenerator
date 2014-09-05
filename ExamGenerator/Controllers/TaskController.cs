@@ -25,14 +25,13 @@ namespace ExamGenerator.Controllers
                 tagsList = tagsList.Remove(tagsList.Length - 2);
 
                 TaskModel taskRow = new TaskModel();
-                taskRow.id = task.Id;
-                taskRow.name = task.Name;
-                taskRow.tags = tagsList;
+                taskRow.Id = task.Id;
+                taskRow.Name = task.Name;
+                taskRow.Tags = tagsList;
 
                 getModelTasks.Add(taskRow);
             }
-
-
+            
             return View(getModelTasks);
         }
 
@@ -50,19 +49,29 @@ namespace ExamGenerator.Controllers
         {
             try
             {
-                TASKS task = new TASKS()
+                if (ModelState.IsValid)
                 {
-                    Id = model.Id,
-                    Name = model.Name,
-                    Content = model.Content // to trzeba zmienić
+                    if(genKolEnt.TASKS.Any(t => t.Name.Equals(model.Name))){
+                        ViewBag.Message = "Zadanie o takiej nazwie już istnieje w bazie.";
+                        return View(model);
+                    }
+                    TASKS task = new TASKS()
+                    {
+                        Id = model.Id,
+                        Name = model.Name,
+                        Content = model.Content // to trzeba zmienić
 
-                };
-                genKolEnt.TASKS.Add(task);
-                genKolEnt.SaveChanges();
-                return RedirectToAction("Index");
+                    };
+                    genKolEnt.TASKS.Add(task);
+                    genKolEnt.SaveChanges();
+                    return RedirectToAction("Index");
+                    }
+                    else
+                    return View(model);
             }
-            catch
+            catch(Exception e)
             {
+                ViewBag.Message = e.Message;
                 return View(model);
             }
         }

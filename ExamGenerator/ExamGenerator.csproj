@@ -355,6 +355,7 @@
     <Content Include="Views\Exam\Index.cshtml" />
     <Content Include="Views\Task\Index.cshtml" />
     <Content Include="Views\Task\Create.cshtml" />
+    <Content Include="Views\Tag\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

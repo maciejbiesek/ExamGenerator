@@ -12,8 +12,8 @@ namespace ExamGenerator.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Content { get; set; }
-        public int IdTag { get; set; }
-        public string TagName { get; set; }
+        public string Tags { get; set; }
+        public List<int> TagIdList { get; set; }
 
     }
 }

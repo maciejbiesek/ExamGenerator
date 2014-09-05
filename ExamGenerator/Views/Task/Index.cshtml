@@ -12,20 +12,11 @@
     <h1>Dostępne zadania</h1>
 </hgroup>
 
-<span>@Html.ActionLink("Dodaj nowy", "x", "x", routeValues: null, htmlAttributes: new { id = "registerLink" })</span>
+<span>@Html.ActionLink("Dodaj nowe zadanie", "Create", "Task", routeValues: null, htmlAttributes: new { id = "registerLink" })</span>
 
 <div id="tables">
     <ul>
         <li>
-<<<<<<< HEAD
-            <span class="mainHeader">
-                <span class="columnName">Nazwa</span>
-                <span class="deleteOption">@Html.ActionLink("Dodaj nowy", "Create", "Task")</span>
-            </span>
-        </li>
-        <li>
-=======
->>>>>>> origin/master
             <ul class="tabelRows">
                 <li>
                     <span class="topHeader">
@@ -36,11 +27,11 @@
                 @foreach (var task in Model)
                 {
                     <li>
-                        <span class="columnName">@task.name</span>
-                        <span class="deleteOption">@Html.ActionLink("X", "DeleteExam", "Exam", new { id = task.id }, new { @class = "delete-link" })</span>
+                        <span class="columnName">@task.Name</span>
+                        <span class="deleteOption">@Html.ActionLink("X", "DeleteExam", "Exam", new { id = task.Id }, new { @class = "delete-link" })</span>
                     </li>
                     <li>
-                        <span class="columnTagsInTags"><b>Powiązane tagi:</b> @task.tags</span>
+                        <span class="columnTagsInTags"><b>Powiązane tagi:</b> @task.Tags</span>
                     </li>
                 }
             </ul>

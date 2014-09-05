@@ -12,7 +12,7 @@
     <h1>Dostępne tagi</h1>
 </hgroup>
 
-<span>@Html.ActionLink("Dodaj nowy", "x", "x", routeValues: null, htmlAttributes: new { id = "registerLink" })</span>
+<span>@Html.ActionLink("Dodaj nowy", "Create", "Tag", routeValues: null, htmlAttributes: new { id = "registerLink" })</span>
 
 <div id="tables">
     <ul>
@@ -28,7 +28,7 @@
                 {
                     <li>
                         <span class="columnName">@tag.Name</span>
-                        <span class="deleteOption">@Html.ActionLink("X", "DeleteExam", "Exam", new { id = tag.Id }, new { @class = "delete-link" })</span>
+                        <span class="deleteOption">@Html.ActionLink("X", "Delete", "Tag", new { id = tag.Id }, new { @class = "delete-link" })</span>
 
                     </li>
                 }
