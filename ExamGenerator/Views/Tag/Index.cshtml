@@ -51,13 +51,16 @@
                     <span class="topHeader">
                         <span class="columnName">Nazwa</span>
                         <span class="deleteOption">Usuń</span>
+                        <span class="deleteOption">Edytuj</span>
                     </span>
                 </li>
                 @foreach (var tag in Model)
                 {
                     <li>
                         <span class="columnName">@tag.Name</span>
-                        <span class="deleteOption">@Html.ActionLink("X", "Delete", "Tag", new { id = tag.Id }, new { @class = "delete-link" })</span>
+                        <span class="deleteOption"><a href="@Url.Action("Delete", "Tag", new { id = tag.Id })" class="delete-link"><img src="~/Images/Icons/delete.png" title="Usuń" class="icon" /></a></span>
+                        <span class="deleteOption"><a href="@Url.Action("Edit", "Tag", new { id = tag.Id })" class="no-bg-change"><img src="~/Images/Icons/edit.png" title="Edytuj" class="icon" /></a></span>
+       
 
                     </li>
                 }

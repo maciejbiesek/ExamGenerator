@@ -56,8 +56,8 @@ h1.name {
      text-align: center;
 }
 
-.columnName                    {    width: 50%;}
-.deleteOption                  {    width: 20%;}
+.columnName                    {    width: 60%;}
+.deleteOption                  {    width: 10%;}
 .columnTagsInTags              {    width: 90%;
                                     padding: 0px 3px 10px 19px;
 }
@@ -69,3 +69,21 @@ h1.name {
 hgroup.title{
     text-align: center;
 }
+
+a img.icon {
+    border: 0 none;
+    outline: none;
+    width: 20px;
+    height: 20px;
+    padding-left:3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    margin: 0em;
+    }
+
+a.no-bg-change:hover { background: none !important; }
+a.delete-link:hover { background: none !important; }
+
+a img.icon:hover {
+        background-color: #c7d1d6;
+    }
