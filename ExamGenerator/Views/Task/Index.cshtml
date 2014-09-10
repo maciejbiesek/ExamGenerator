@@ -63,8 +63,8 @@
                         <ul>
                             <li>
                                 <span class="columnName">@task.Name</span>
-                                <span class="deleteOption">@Html.ActionLink("X", "Delete", "Task", new { id = task.Id }, new { @class = "delete-link" })</span>
-                                <span class="deleteOption">@Html.ActionLink("#", "Edit", "Task", new { id = task.Id })</span>
+                                <span class="deleteOption"><a href="@Url.Action("Delete", "Task", new { id = task.Id })" class="delete-link"><img src="~/Images/Icons/delete.png" title="Usuń" class="icon" /></a></span>
+                                <span class="deleteOption"><a href="@Url.Action("Edit", "Task",  new { id = task.Id })" class="no-bg-change"><img src="~/Images/Icons/edit.png" title="Edytuj" class="icon" /></a></span>                            
                             </li>
                             <li>
                                 <span class="columnTagsInTags"><b>Powiązane tagi:</b> @task.Tags</span>
