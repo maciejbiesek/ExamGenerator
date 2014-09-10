@@ -19,7 +19,7 @@ namespace ExamGenerator.Controllers
 
             foreach(var task in getTasks){
                 string tagsList = "";
-                foreach(var tag in task.TAGS){
+                foreach(var tag in task.TAGS.ToList()){
                     tagsList += tag.Name + ", ";
                 }
                 if (tagsList != "")
@@ -87,13 +87,26 @@ namespace ExamGenerator.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            var task = genKolEnt.TASKS.Find(id);
+            var t = genKolEnt.TASKS.Find(id);
+
+            var task = new TaskModel { 
+                Name = t.Name,
+                Id = t.Id              
+            };
+
+            foreach (var tag in t.TAGS.ToList())
+            {
+                task.TagIdList.Add(tag.Id);
+            }
+
             ViewBag.Tags = new MultiSelectList(genKolEnt.TAGS, "Id", "Name", null);
+            ModelState.Clear();
+
             return View(task);
         }
 
         [HttpPost]
-        public ActionResult Edit(TaskModel model)
+        public ActionResult Edit(int id, TaskModel model)
         {
             try
             {
