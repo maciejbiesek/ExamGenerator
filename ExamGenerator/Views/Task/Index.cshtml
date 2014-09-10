@@ -5,8 +5,40 @@
 }
 
 @section Scripts{
-    @Scripts.Render("~/bundles/listScript")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var deleteLinkObj;
+            $('.delete-link').click(function () {
+                deleteLinkObj = $(this);
+                $('#delete-dialog').dialog('open');
+                return false;
+            });
+
+            $('#delete-dialog').dialog({
+                autoOpen: false, width: 400, resizable: false, modal: true,
+                buttons: {
+                    "Usuń": function () {
+                        $.post(deleteLinkObj[0].href, function (data) {
+                            if (data == '@Boolean.TrueString') {
+                                deleteLinkObj.closest("ul").hide('fast');
+                            }
+                            else {
+                                //(opcjonalnie) wyswietl blad
+                            }
+                        });
+                        $(this).dialog("close"); //
+                    },
+                    "Anuluj": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        });
+    </script>
 }
+
+
+
 
 <hgroup class="title">
     <h1>Dostępne zadania</h1>
@@ -25,14 +57,18 @@
                     </span>
                 </li>
                 @foreach (var task in Model)
-                {
+                {                    
                     <li>
-                        <span class="columnName">@task.Name</span>
-                        <span class="deleteOption">@Html.ActionLink("X", "DeleteExam", "Exam", new { id = task.Id }, new { @class = "delete-link" })</span>
-                    </li>
-                    <li>
-                        <span class="columnTagsInTags"><b>Powiązane tagi:</b> @task.Tags</span>
-                    </li>
+                        <ul>
+                            <li>
+                                <span class="columnName">@task.Name</span>
+                                <span class="deleteOption">@Html.ActionLink("X", "Delete", "Task", new { id = task.Id }, new { @class = "delete-link" })</span>
+                            </li>
+                            <li>
+                                <span class="columnTagsInTags"><b>Powiązane tagi:</b> @task.Tags</span>
+                            </li>
+                        </ul>
+                    </li>                    
                 }
             </ul>
         </li>

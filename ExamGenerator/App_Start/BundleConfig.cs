@@ -28,7 +28,11 @@ namespace ExamGenerator
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/Site.css",
-                        "~/Content/TableList.css"));
+                        "~/Content/TableList.css",
+                        "~/Content/jquery-ui.css"));
+
+            bundles.Add(new StyleBundle("~/Content/chosen").Include(
+                        "~/Multiple_chosen/chosen.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

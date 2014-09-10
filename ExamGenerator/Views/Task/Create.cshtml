@@ -4,48 +4,48 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Multiple_chosen/chosen.jquery.js")" type="text/javascript"></script>
+    <script>    $(".chzn-select").chosen(); </script>
+}
+
+@section Styles {
+    @Styles.Render("~/Content/chosen")
+}
+
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>TaskModel</legend>
+        <legend>Dodawanie zadania:</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
+        <div class="editor-label">Nazwa</div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
+            <!--@@Html.ValidationMessageFor(model => model.Name)-->
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Content)
-        </div>
+        <div class="editor-label">Treść zadania</div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Content)
-            @Html.ValidationMessageFor(model => model.Content)
         </div>
 
         <div class="editor-label">Tagi</div>
         <div class="editor-field">
-            @Html.DropDownListFor(m => m.IdTag, (MultiSelectList)ViewBag.Tags, "")
-            @Html.ValidationMessageFor(m => m.IdTag)
+            @Html.ListBoxFor(x => x.TagIdList, (MultiSelectList)ViewBag.Tags, new { @class = "chzn-select", data_placeholder = "Wybierz tagi..." })
         </div><br>
-
-
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Utwórz" />
         </p>
-    </fieldset>
+</fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Wróć do listy", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+

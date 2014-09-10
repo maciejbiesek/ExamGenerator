@@ -224,6 +224,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\TableList.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -299,6 +300,10 @@
       <LastGenOutput>ExamModel.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Multiple_chosen\chosen-sprite.png" />
+    <Content Include="Multiple_chosen\chosen.css" />
+    <Content Include="Multiple_chosen\chosen.jquery.js" />
+    <Content Include="Multiple_chosen\chosen.jquery.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
