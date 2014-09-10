@@ -53,10 +53,9 @@ namespace ExamGenerator.Controllers
             try
             {
                 TAGS tag = genKolEnt.TAGS.Find(id);
-
-                if (tag == null)
+                foreach (var t in tag.TASKS.ToList())
                 {
-                    return HttpNotFound();
+                    tag.TASKS.Remove(t);
                 }
 
                 genKolEnt.TAGS.Remove(tag);

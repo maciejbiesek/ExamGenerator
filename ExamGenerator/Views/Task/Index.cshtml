@@ -54,6 +54,7 @@
                     <span class="topHeader">
                         <span class="columnName">Nazwa</span>
                         <span class="deleteOption">Usuń</span>
+                        <span class="deleteOption">Edytuj</span>
                     </span>
                 </li>
                 @foreach (var task in Model)
@@ -63,6 +64,7 @@
                             <li>
                                 <span class="columnName">@task.Name</span>
                                 <span class="deleteOption">@Html.ActionLink("X", "Delete", "Task", new { id = task.Id }, new { @class = "delete-link" })</span>
+                                <span class="deleteOption">@Html.ActionLink("#", "Edit", "Task", new { id = task.Id })</span>
                             </li>
                             <li>
                                 <span class="columnTagsInTags"><b>Powiązane tagi:</b> @task.Tags</span>

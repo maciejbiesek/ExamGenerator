@@ -40,11 +40,8 @@ namespace ExamGenerator.Controllers
 
         public ActionResult Create()
         {
-            TaskModel model = new TaskModel();
-
             ViewBag.Tags = new MultiSelectList(genKolEnt.TAGS, "Id", "Name", null);
-
-            return View(model);
+            return View();
         }
 
         [HttpPost]
@@ -63,7 +60,6 @@ namespace ExamGenerator.Controllers
                     
                     TASKS task = new TASKS()
                     {
-                        Id = model.Id,
                         Name = model.Name,
                         Content = model.Content // to trzeba zmienić
                     };
@@ -89,15 +85,65 @@ namespace ExamGenerator.Controllers
             }
         }
 
+        public ActionResult Edit(int id = 0)
+        {
+            var task = genKolEnt.TASKS.Find(id);
+            ViewBag.Tags = new MultiSelectList(genKolEnt.TAGS, "Id", "Name", null);
+            return View(task);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(TaskModel model)
+        {
+            try
+            {
+                ViewBag.Tags = new MultiSelectList(genKolEnt.TAGS, "Id", "Name", null);
+
+                if (ModelState.IsValid)
+                {
+                    if (genKolEnt.TASKS.Any(t => t.Name.Equals(model.Name)))
+                    {
+                        ViewBag.Message = "Zadanie o takiej nazwie już istnieje w bazie.";
+                        return View(model);
+                    }
+
+                    var task = genKolEnt.TASKS.Find(model.Id);
+
+                    task.Name = model.Name;
+
+                    
+                    foreach (var tag in task.TAGS.ToList())
+                    {
+                        task.TAGS.Remove(tag);
+                    }
+
+                    foreach (var idTag in model.TagIdList)
+                    {
+                        var t = genKolEnt.TAGS.Find(idTag);
+                        task.TAGS.Add(t);
+                    }
+
+                    genKolEnt.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                else
+                    return View(model);
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View(model);
+            }
+        }
+
+
         [HttpPost]
         public ActionResult Delete(int id = 0)
         {
             try
             {
                 TASKS task = genKolEnt.TASKS.Find(id);
-
-                var count = task.TAGS.Count;
-
                 foreach (var tag in task.TAGS.ToList())
                 {
                     task.TAGS.Remove(tag);
