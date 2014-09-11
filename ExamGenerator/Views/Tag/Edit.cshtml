@@ -1,0 +1,36 @@
+﻿@model ExamGenerator.Models.TagModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Edytowanie tagu:</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">Nazwa</div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            <!--@@Html.ValidationMessageFor(model => model.Name)-->
+        </div>
+
+        <p>
+            <input type="submit" value="Zapisz zmiany" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Wróć do listy", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

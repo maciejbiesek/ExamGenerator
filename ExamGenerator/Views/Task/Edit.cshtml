@@ -23,6 +23,8 @@
     <fieldset>
         <legend>Edytowanie zadania:</legend>
 
+        @Html.HiddenFor(model => model.Id)
+
         <div class="editor-label">Nazwa</div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)

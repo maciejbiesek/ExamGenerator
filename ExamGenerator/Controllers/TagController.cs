@@ -47,6 +47,33 @@ namespace ExamGenerator.Controllers
             return View(model);
         }
 
+        public ActionResult Edit(int id)
+        {
+            TagModel model = genKolEnt.TAGS.Where(x => x.Id == id).Select(x => new TagModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }).SingleOrDefault();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(TagModel model)
+        {
+            try
+            {
+                TAGS tag = genKolEnt.TAGS.Where(x => x.Id == model.Id).Single<TAGS>();
+                tag.Name = model.Name;
+                genKolEnt.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View(model);
+            }
+        }
+
         [HttpPost]
         public ActionResult Delete(int id = 0)
         {
