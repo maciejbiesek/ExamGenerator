@@ -17,23 +17,20 @@
         <li>
             <span class="mainHeader">
                 <span class="columnName">Nazwa</span>
-                <span class="deleteOption">@Html.ActionLink("Generuj", "x", "x", routeValues: null, htmlAttributes: new { id = "registerLink" })</span>
-            </span>
+                <span class="addOption"><button onclick="location.href = '@Url.Action("Generate")'">Generuj</button></span>            </span>
         </li>
         <li>
             <ul class="tabelRows">
                 <li>
                     <span class="topHeader">
                         <span class="columnName">Nazwa</span>
-                        <span class="deleteOption">Usuń</span>
                     </span>
                 </li>
                 @foreach (var exam in Model)
                 {
                     <li>
                         <span class="columnName">@exam.Name</span>
-                        <span class="deleteOption">@Html.ActionLink("X", "DeleteExam", "Exam", new { id = exam.Id }, new { @class = "delete-link" })</span>
-
+                        <span class="deleteOption"><a href="@Url.Action("Delete", "Exam", new { id = exam.Id })" class="delete-link"><img src="~/Images/Icons/delete.png" title="Usuń" class="icon" /></a></span>
                     </li>
                 }
             </ul>

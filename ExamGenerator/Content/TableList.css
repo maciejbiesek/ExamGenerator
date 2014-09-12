@@ -46,21 +46,31 @@ h1.name {
     margin-top: 0.7em;
 }
 
-.columnName, .deleteOption, .columnTagsInTags{
+.columnName, .deleteOption, .columnTagsInTags, .addOption{
+    display: inline-block;
+    font-family: Calibri;
+}
+
+.headerName {
+    vertical-align: bottom;
     display: inline-block;
     font-family: Calibri;
 }
 
 
-.deleteOption {
+
+.deleteOption, .addOption {
      text-align: center;
 }
 
-.columnName                    {    width: 60%;}
+.columnName, .headerName       {    width: 60%;}
 .deleteOption                  {    width: 10%;}
+.addOption                     {    width: 20%;}
 .columnTagsInTags              {    width: 90%;
                                     padding: 0px 3px 10px 19px;
 }
+
+
 
 .logo{
      height: 50px;
@@ -79,7 +89,10 @@ a img.icon {
     padding-right: 3px;
     padding-top: 3px;
     margin: 0em;
+
     }
+
+
 
 a.no-bg-change:hover { background: none !important; }
 a.delete-link:hover { background: none !important; }
@@ -87,3 +100,22 @@ a.delete-link:hover { background: none !important; }
 a img.icon:hover {
         background-color: #c7d1d6;
     }
+
+button, input[type="submit"] {
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  background: #009f9f;
+  padding: 4px 10px 4px 10px;
+  text-decoration: none;
+  margin-right: 2px;
+}
+
+button:hover, input[type="submit"]:hover {
+  background: #787878;
+}
+

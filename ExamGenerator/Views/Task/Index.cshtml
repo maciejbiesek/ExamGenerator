@@ -42,7 +42,6 @@
     <h1>Dostępne zadania</h1>
 </hgroup>
 
-<span>@Html.ActionLink("Dodaj nowe zadanie", "Create", "Task", routeValues: null, htmlAttributes: new { id = "registerLink" })</span>
 
 <div id="tables">
     <ul>
@@ -50,9 +49,8 @@
             <ul class="tabelRows">
                 <li>
                     <span class="topHeader">
-                        <span class="columnName">Nazwa</span>
-                        <span class="deleteOption"></span>
-                        <span class="deleteOption"></span>
+                        <span class="headerName">Nazwa</span>
+                        <span class="addOption"><button onclick="location.href = '@Url.Action("Create")'">Dodaj nowe</button></span>
                     </span>
                 </li>
                 @foreach (var task in Model)
