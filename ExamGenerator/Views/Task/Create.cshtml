@@ -1,7 +1,7 @@
 ﻿@model ExamGenerator.Models.TaskModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Dodawanie_zadania";
 }
 
 @section Scripts {
@@ -14,13 +14,16 @@
     @Styles.Render("~/Content/chosen")
 }
 
+<h2>Dodawanie zadania:</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Create", "Task", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    
 
     <fieldset>
-        <legend>Dodawanie zadania:</legend>
+        <legend>Add task</legend>
 
         <div class="editor-label">Nazwa</div>
         <div class="editor-field">
@@ -29,9 +32,7 @@
         </div>
 
         <div class="editor-label">Treść zadania</div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Content)
-        </div>
+        <input type="file" name="file" />
 
         <div class="editor-label">Tagi</div>
         <div class="editor-field">
