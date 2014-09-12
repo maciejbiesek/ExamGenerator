@@ -89,15 +89,20 @@ namespace ExamGenerator.Controllers
         {
             var t = genKolEnt.TASKS.Find(id);
 
-            var task = new TaskModel { 
-                Name = t.Name,
-                Id = t.Id              
-            };
+            List<int> listToWrite = new List<int>();
 
             foreach (var tag in t.TAGS.ToList())
             {
-                task.TagIdList.Add(tag.Id);
+                var index = tag.Id;
+                listToWrite.Add(index);
             }
+
+            var task = new TaskModel
+            {
+                Name = t.Name,
+                Id = t.Id,
+                TagIdList = listToWrite
+            };
 
             ViewBag.Tags = new MultiSelectList(genKolEnt.TAGS, "Id", "Name", null);
             ModelState.Clear();

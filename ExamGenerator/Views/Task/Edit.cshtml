@@ -1,7 +1,7 @@
 ﻿@model ExamGenerator.Models.TaskModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edytuj_zad";
 }
 
 @section Scripts {
@@ -14,6 +14,7 @@
     @Styles.Render("~/Content/chosen")
 }
 
+<h2>Edytowanie zadania:</h2>
 
 @using (Html.BeginForm())
 {
@@ -21,7 +22,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Edytowanie zadania:</legend>
+        <legend>Edit</legend>
 
         @Html.HiddenFor(model => model.Id)
 
