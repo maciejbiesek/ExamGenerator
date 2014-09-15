@@ -11,6 +11,10 @@
     vertical-align: top;
 }
 
+.tagRow span {
+    vertical-align: middle;
+}
+
 
 
 /*
@@ -90,8 +94,8 @@ hgroup.title{
 a img.icon {
     border: 0 none;
     outline: none;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     padding-left:3px;
     padding-right: 3px;
     padding-top: 3px;

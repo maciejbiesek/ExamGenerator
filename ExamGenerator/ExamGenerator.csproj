@@ -370,6 +370,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+<<<<<<< HEAD
+=======
+    <Folder Include="Images\Icons\" />
+>>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
