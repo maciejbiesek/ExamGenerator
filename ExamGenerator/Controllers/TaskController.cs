@@ -116,11 +116,6 @@ namespace ExamGenerator.Controllers
                 String template = stringBuilder.ToString();
                 reader.Close();
 
-                if (System.IO.File.Exists(path))
-                {
-                    System.IO.File.Delete(path);
-                }
-
                 return template;
             }
             else
