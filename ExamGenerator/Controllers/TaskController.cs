@@ -1,7 +1,9 @@
 ﻿using ExamGenerator.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -45,11 +47,13 @@ namespace ExamGenerator.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(TaskModel model)
+        public ActionResult Create(TaskModel model, HttpPostedFileBase file)
         {
             try
             {
                 ViewBag.Tags = new MultiSelectList(genKolEnt.TAGS, "Id", "Name", null);
+
+                string taskContent = TakeLatexCode(file);
 
                 if (ModelState.IsValid)
                 {
@@ -61,7 +65,7 @@ namespace ExamGenerator.Controllers
                     TASKS task = new TASKS()
                     {
                         Name = model.Name,
-                        Content = model.Content // to trzeba zmienić
+                        Content = taskContent // to trzeba zmienić
                     };
 
                     foreach (var idTag in model.TagIdList)
@@ -83,6 +87,44 @@ namespace ExamGenerator.Controllers
                 ViewBag.Message = e.Message;
                 return View(model);
             }
+        }
+
+        private string TakeLatexCode(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                string fileName = Path.GetFileName(file.FileName);
+                if (!Directory.Exists(Server.MapPath("~/Files")))
+                {
+                    Directory.CreateDirectory(Server.MapPath("~/Files"));
+                }
+                string path = Path.Combine(Server.MapPath("~/Files"), fileName);
+                file.SaveAs(path);
+
+
+                StreamReader reader = new StreamReader(path, Encoding.Default, true);
+                String line = null;
+                String ln = System.Environment.NewLine;
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ((line = reader.ReadLine()) != null)
+                {
+                    stringBuilder.Append(line);
+                    stringBuilder.Append(ln);
+                }
+
+                String template = stringBuilder.ToString();
+                reader.Close();
+
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+
+                return template;
+            }
+            else
+                return null;
         }
 
         public ActionResult Edit(int id = 0)
