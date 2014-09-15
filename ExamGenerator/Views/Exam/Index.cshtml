@@ -31,6 +31,7 @@
                     <li>
                         <span class="columnName">@exam.Name</span>
                         <span class="deleteOption"><a href="@Url.Action("Delete", "Exam", new { id = exam.Id })" class="delete-link"><img src="~/Images/Icons/delete.png" title="Usuń" class="icon" /></a></span>
+                        <span class="deleteOption"><a href="@Url.Action("WriteToFile", "Exam", new { id = exam.Id })"><img src="~/Images/Icons/x.png" title="Ściągnij" class="icon" /></a></span>
                     </li>
                 }
             </ul>

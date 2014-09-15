@@ -57,7 +57,7 @@
                 {                    
                     <li>
                         <ul>
-                            <li>
+                            <li class="taskRow">
                                 <span class="columnName">@task.Name</span>
                                 <span class="deleteOption"><a href="@Url.Action("Delete", "Task", new { id = task.Id })" class="delete-link"><img src="~/Images/Icons/delete.png" title="Usuń" class="icon" /></a></span>
                                 <span class="deleteOption"><a href="@Url.Action("Edit", "Task",  new { id = task.Id }, null)" class="no-bg-change"><img src="~/Images/Icons/edit.png" title="Edytuj" class="icon" /></a></span>                            

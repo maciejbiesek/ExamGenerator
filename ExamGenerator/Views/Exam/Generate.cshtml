@@ -1,7 +1,7 @@
-﻿@model ExamGenerator.Models.TaskModel
+﻿@model ExamGenerator.Models.ExaminationModel
 
 @{
-    ViewBag.Title = "Edytuj_zad";
+    ViewBag.Title = "Generuj_egzamin";
 }
 
 @section Scripts {
@@ -14,7 +14,7 @@
     @Styles.Render("~/Content/chosen")
 }
 
-<h2>Edytowanie zadania:</h2>
+<h2>Generuj egzamin:</h2>
 
 <span>@ViewBag.Message</span>
 
@@ -24,14 +24,17 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Edit</legend>
-
-        @Html.HiddenFor(model => model.Id)
+        <legend>Generate</legend>
 
         <div class="editor-label">Nazwa</div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)
             <!--@@Html.ValidationMessageFor(model => model.Name)-->
+        </div>
+
+        <div class="editor-label">Liczba zadań</div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumberOfQuestions)
         </div>
 
         <div class="editor-label">Tagi</div>

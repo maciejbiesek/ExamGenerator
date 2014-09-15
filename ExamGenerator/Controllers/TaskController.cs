@@ -161,7 +161,7 @@ namespace ExamGenerator.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    if (genKolEnt.TASKS.Any(t => t.Name.Equals(model.Name)))
+                    if (genKolEnt.TASKS.Any(t => t.Name.Equals(model.Name) && t.Id != model.Id))
                     {
                         ViewBag.Message = "Zadanie o takiej nazwie już istnieje w bazie.";
                         return View(model);

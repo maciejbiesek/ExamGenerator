@@ -193,6 +193,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ExaminationModel.cs" />
     <Compile Include="Models\ExamModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -300,6 +301,7 @@
       <DependentUpon>ExamModel.edmx</DependentUpon>
       <LastGenOutput>ExamModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Files\template.tex" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Multiple_chosen\chosen-sprite.png" />
     <Content Include="Multiple_chosen\chosen.css" />
@@ -364,10 +366,10 @@
     <Content Include="Views\Tag\Create.cshtml" />
     <Content Include="Views\Task\Edit.cshtml" />
     <Content Include="Views\Tag\Edit.cshtml" />
+    <Content Include="Views\Exam\Generate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

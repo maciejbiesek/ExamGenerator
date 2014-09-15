@@ -71,6 +71,13 @@ h1.name {
 }
 
 
+li.taskRow{
+    padding: 3px 0pt 0px 19px;
+}
+
+.taskRow span{
+    vertical-align: bottom
+}
 
 .logo{
      height: 50px;
