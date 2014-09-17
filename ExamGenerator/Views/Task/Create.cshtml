@@ -1,7 +1,7 @@
 ﻿@model ExamGenerator.Models.TaskModel
 
 @{
-    ViewBag.Title = "Dodawanie_zadania";
+    ViewBag.Title = "Dodawanie zadania";
 }
 
 @section Scripts {
@@ -10,12 +10,10 @@
     <script>    $(".chzn-select").chosen(); </script>
 }
 
-@section Styles {
-    @Styles.Render("~/Content/chosen")
-}
+<link href="@Url.Content("~/Multiple_chosen/chosen.css")" rel="stylesheet" type="text/css" />
 
-
-<h2>Dodawanie zadania:</h2>
+<h1>@ViewBag.Title</h1>
+<h2>@ViewBag.Message</h2>
 
 @using (Html.BeginForm("Create", "Task", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {

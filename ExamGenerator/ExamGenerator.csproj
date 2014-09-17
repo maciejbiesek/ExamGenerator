@@ -283,6 +283,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\pdflatex.exe" />
     <Content Include="Global.asax" />
     <EntityDeploy Include="Models\ExamModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

@@ -90,13 +90,15 @@ namespace ExamGenerator.Controllers
         public ActionResult WriteToFile(int id)
         {
             var strOutput = genKolEnt.EXAMS.Find(id).Content;
-            string fileName = "egzamin1.tex";
+            string fileName = "egzaminnnnnn.tex";
             string path = Path.Combine(Server.MapPath("~/Files"), fileName);
 
             // tworzenie pliku wynikowego .tex i zapisanie od niego stringa
 
             System.IO.File.WriteAllText(path, strOutput);
-            
+
+            ConvertTexToPDF(path);
+
             /*StreamWriter writer = new StreamWriter(path);
             writer.WriteLine(strOutput);
             writer.Close();
@@ -111,6 +113,8 @@ namespace ExamGenerator.Controllers
         private void ConvertTexToPDF(string path)
         {
             //convert tex to pdf
+            string programPath = Path.Combine(Server.MapPath("~/Files"), "pdflatex.exe");
+
             ProcessStartInfo procStartInfo = new ProcessStartInfo("pdflatex", path);
             procStartInfo.CreateNoWindow = true;
             procStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -143,6 +147,28 @@ namespace ExamGenerator.Controllers
             reader.Close();
 
             return template;
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id = 0)
+        {
+            try
+            {
+                EXAMS exam = genKolEnt.EXAMS.Find(id);
+                foreach (var task in exam.TAGS.ToList())
+                {
+                    exam.TAGS.Remove(task);
+                }
+
+                genKolEnt.EXAMS.Remove(exam);
+                genKolEnt.SaveChanges();
+
+                return Content(Boolean.TrueString);
+            }
+            catch
+            {
+                return Content(Boolean.FalseString);
+            }
         }
 
     }

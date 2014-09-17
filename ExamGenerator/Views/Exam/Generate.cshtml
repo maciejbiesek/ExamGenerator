@@ -1,7 +1,7 @@
 ﻿@model ExamGenerator.Models.ExaminationModel
 
 @{
-    ViewBag.Title = "Generuj_egzamin";
+    ViewBag.Title = "Generuj egzamin";
 }
 
 @section Scripts {
@@ -10,13 +10,11 @@
     <script>    $(".chzn-select").chosen(); </script>
 }
 
-@section Styles {
-    @Styles.Render("~/Content/chosen")
-}
+<link href="@Url.Content("~/Multiple_chosen/chosen.css")" rel="stylesheet" type="text/css" />
 
-<h2>Generuj egzamin:</h2>
 
-<span>@ViewBag.Message</span>
+<h1>@ViewBag.Title</h1>
+<h2>@ViewBag.Message</h2>
 
 @using (Html.BeginForm())
 {
