@@ -1,7 +1,7 @@
 ﻿@model ExamGenerator.Models.ExaminationModel
 
 @{
-    ViewBag.Title = "Generuj_egzamin";
+    ViewBag.Title = "Generuj egzamin";
 }
 
 @section Scripts {
@@ -18,19 +18,15 @@
         function drawModels() {
             var modelsNum = parseInt(models.value);
             var curModels = modelsTable.childElementCount;
-            var height = 48;//document.getElementById("lineWithTags").style.height;
 
             for (var i = 1; i <= modelsNum; i++) {
                 var id_name = i.toString();
                 document.getElementById(id_name).style.display = 'block';
-                //document.getElementById(id_name).style.height = "29px";
-                //modelsTable.style.height = (height * i).toString() + "px";  //zmienic wysokosc na automatyczna auto !important
             }
 
             for (var i = modelsNum+1; i <= curModels; i++) {
                 var id_name = i.toString();
                 document.getElementById(id_name).style.display = 'none';
-                //document.getElementById(id_name).style.height = 0;
             }
 
         }
@@ -42,11 +38,10 @@
 
 }
 
-@section Styles {
-    @Styles.Render("~/Content/chosen")
-}
+<link href="@Url.Content("~/Multiple_chosen/chosen.css")" rel="stylesheet" type="text/css" />
 
-<h2>Generuj egzamin:</h2>
+<h1>@ViewBag.Title</h1>
+<h2>@ViewBag.Message</h2>
 
 <span>@ViewBag.Message</span>
 

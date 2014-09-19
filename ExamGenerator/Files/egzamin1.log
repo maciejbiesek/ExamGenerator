@@ -1,7 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.17)  19 SEP 2014 14:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.19)  19 SEP 2014 15:30
 entering extended mode
-**C:/Users/Maciej/Desktop/PPB2014/Workspace/ExamGenerator/Files/egzamin1.tex
-(C:/Users/Maciej/Desktop/PPB2014/Workspace/ExamGenerator/Files/egzamin1.tex
+**egzamin1.tex
+
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\Files\egzamin1.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -14,20 +16,20 @@ ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
 an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\exam\
-exam.cls
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\exam\exam.cls"
 Document Class: exam 2011/05/22 Version 2.4 by Philip Hirschhorn
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\base\
-ifthen.sty
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\base\
-article.cls
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\base\article.cls"
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\base\
-size10.clo
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\base\size10.clo"
 File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -108,23 +110,23 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \FrameRule=\dimen104
 \FrameSep=\dimen105
 )
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\polsk
-i\polski.sty
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\polski\polski.sty"
 Package: polski 2008/02/24 v1.3.3 Polish language package
 
 Document language package `polski' v1.3.3 <2008/02/24>
 \l@nohyphenation=\language69
    Switching to Polish text encoding and Polish maths fonts.
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\base\
-ot4enc.def
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\base\ot4enc.def"
 File: ot4enc.def 2005/09/27 v1.99g Standard LaTeX file
 )
 LaTeX Font Info:    Try loading font information for OT4+cmr on input line 346.
 
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\polsk
-i\ot4cmr.fd
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\polski\ot4cmr.fd"
 File: ot4cmr.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
@@ -159,22 +161,22 @@ LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/cmsy/b/n --> OMS/plsy/b/n on input line 346.
 )
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\base\
-inputenc.sty
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\base\inputenc.sty"
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks19
 \inpenc@posthook=\toks20
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\base\
-utf8.def
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\base\utf8.def"
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\base\
-t1enc.dfu
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\base\t1enc.dfu"
 File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -324,8 +326,8 @@ File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\base\
-ot1enc.dfu
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\base\ot1enc.dfu"
 File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -356,8 +358,8 @@ File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\base\
-omsenc.dfu
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\base\omsenc.dfu"
 File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -383,7 +385,8 @@ Now handling font encoding OT4 ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\Files\egzamin1.aux)
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\Files\egzamin1.aux")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
@@ -398,64 +401,71 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Try loading font information for OML+plm on input line 40.
+LaTeX Font Info:    Try loading font information for OML+plm on input line 12.
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\polsk
-i\omlplm.fd
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\polski\omlplm.fd"
 File: omlplm.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMS+plsy on input line 40.
+LaTeX Font Info:    Try loading font information for OMS+plsy on input line 12.
 
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\polsk
-i\omsplsy.fd
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\polski\omsplsy.fd"
 File: omsplsy.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
-LaTeX Font Info:    Try loading font information for OMX+plex on input line 40.
+LaTeX Font Info:    Try loading font information for OMX+plex on input line 12.
 
 
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\MiKTeX\tex\latex\polsk
-i\omxplex.fd
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\MiKTeX\tex\latex\polski\omxplex.fd"
 File: omxplex.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <10> on input line 40.
+(Font)              <10> on input line 12.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <7> on input line 40.
+(Font)              <7> on input line 12.
 LaTeX Font Info:    External font `plex10' loaded for size
-(Font)              <5> on input line 40.
-
-
-LaTeX Warning: Command \l invalid in math mode on input line 40.
-
-Missing character: There is no � in font plmi10!
-[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+(Font)              <5> on input line 12.
+ [1{C:/Users/mon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ]
-This exam contains 3 questions with 0 parts, 0 subparts, and 0 subsubparts.
+This exam contains 1 questions with 4 parts, 0 subparts, and 0 subsubparts.
 This exam has a total of 0 points.
 This exam has a total of 0 bonus points.
-(C:\Users\Maciej\Desktop\PPB2014\Workspace\ExamGenerator\Files\egzamin1.aux) ) 
+
+("C:\Users\mon\Documents\PRAKTYKI\Generator kolokwiów\Repo\ExamGenerator\ExamG
+enerator\Files\egzamin1.aux")
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 1606 strings out of 493921
- 21448 string characters out of 3124823
- 79947 words of memory out of 3000000
- 4929 multiletter control sequences out of 15000+200000
- 8818 words of font info for 27 fonts, out of 3000000 for 9000
+ 1621 strings out of 493921
+ 22749 string characters out of 3121223
+ 78947 words of memory out of 3000000
+ 4944 multiletter control sequences out of 15000+200000
+ 9326 words of font info for 28 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 29i,9n,24p,225b,222s stack positions out of 5000i,500n,10000p,200000b,50000s
-{
-C:/Users/Maciej/Desktop/PPB2014/Workspace/ExamGenerator/MiKTeX/fonts/enc/dvips/
-pl/plmi.enc}{C:/Users/Maciej/Desktop/PPB2014/Workspace/ExamGenerator/MiKTeX/fon
-ts/enc/dvips/pl/plrm.enc}<C:/Users/Maciej/Desktop/PPB2014/Workspace/ExamGenerat
-or/MiKTeX/fonts/type1/public/pl/plbx10.pfb><C:/Users/Maciej/Desktop/PPB2014/Wor
-kspace/ExamGenerator/MiKTeX/fonts/type1/public/pl/plbx12.pfb><C:/Users/Maciej/D
-esktop/PPB2014/Workspace/ExamGenerator/MiKTeX/fonts/type1/public/pl/plmi10.pfb>
-<C:/Users/Maciej/Desktop/PPB2014/Workspace/ExamGenerator/MiKTeX/fonts/type1/pub
-lic/pl/plr10.pfb>
-Output written on egzamin1.pdf (1 page, 30329 bytes).
+ 29i,9n,24p,189b,222s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/mon/Documents/PRAKTYKI/Generator kolokwiów/Repo/ExamGenerator/Exam
+Generator/MiKTeX/fonts/enc/dvips/pl/plms.enc}{C:/Users/mon/Documents/PRAKTYKI/G
+enerator kolokwiów/Repo/ExamGenerator/ExamGenerator/MiKTeX/fonts/enc/dvips/pl/
+plrm.enc}<C:/Users/mon/Documents/PRAKTYKI/Generator kolokwiów/Repo/ExamGenerat
+or/ExamGenerator/MiKTeX/fonts/type1/public/pl/plbx10.pfb><C:/Users/mon/Document
+s/PRAKTYKI/Generator kolokwiów/Repo/ExamGenerator/ExamGenerator/MiKTeX/fonts/t
+ype1/public/pl/plbx12.pfb><C:/Users/mon/Documents/PRAKTYKI/Generator kolokwiów
+/Repo/ExamGenerator/ExamGenerator/MiKTeX/fonts/type1/public/pl/plbx7.pfb><C:/Us
+ers/mon/Documents/PRAKTYKI/Generator kolokwiów/Repo/ExamGenerator/ExamGenerato
+r/MiKTeX/fonts/type1/public/pl/plr10.pfb><C:/Users/mon/Documents/PRAKTYKI/Gener
+ator kolokwiów/Repo/ExamGenerator/ExamGenerator/MiKTeX/fonts/type1/public/pl/p
+lr7.pfb><C:/Users/mon/Documents/PRAKTYKI/Generator kolokwiów/Repo/ExamGenerato
+r/ExamGenerator/MiKTeX/fonts/type1/public/pl/plsy10.pfb><C:/Users/mon/Documents
+/PRAKTYKI/Generator kolokwiów/Repo/ExamGenerator/ExamGenerator/MiKTeX/fonts/ty
+pe1/public/pl/plsy7.pfb>
+Output written on egzamin1.pdf (1 page, 38526 bytes).
 PDF statistics:
- 24 PDF objects out of 1000 (max. 8388607)
+ 36 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
