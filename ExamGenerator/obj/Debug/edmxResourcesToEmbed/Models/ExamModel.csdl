@@ -9,6 +9,8 @@
     <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ExamDate" Type="DateTime" Precision="0" />
     <NavigationProperty Name="TAGS" Relationship="Self.TASK_ON_EXAM" FromRole="EXAMS" ToRole="TAGS" />
+    <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Version" Type="Int32" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

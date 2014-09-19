@@ -1,3 +1,5 @@
 *.cache
 ExamGenerator.v12.suo
 MiKTeX
+bin
+

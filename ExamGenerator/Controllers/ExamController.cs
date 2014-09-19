@@ -72,6 +72,8 @@ namespace ExamGenerator.Controllers
                     }
 
                     strOutput = strOutput.Replace("[ZADANIA]", questions);
+                    strOutput = strOutput.Replace("[NAZWA]", model.Subject);
+                    strOutput = strOutput.Replace("[GRUPA]", model.Version.ToString());
 
                     //zapisuje na razie tylko jeden egzamin
 
@@ -79,6 +81,7 @@ namespace ExamGenerator.Controllers
 
                     exam.Name = model.Name;
                     exam.Content = strOutput;
+                    exam.Subject = model.Subject;
 
                     genKolEnt.EXAMS.Add(exam);
                     genKolEnt.SaveChanges();
@@ -102,11 +105,33 @@ namespace ExamGenerator.Controllers
             }
         }
 
-        public ActionResult WriteToFile(int id)
+        public ActionResult WriteToFileTex(int id)
         {
             var strOutput = genKolEnt.EXAMS.Find(id).Content;
-            string fileName = "egzaminnnnnn.tex";
+            string fileName = "egzamin1.tex";
             string path = Path.Combine(Server.MapPath("~/Files"), fileName);
+            StringBuilder temp = new StringBuilder();
+            temp.Append(DateTime.Now.ToString()).Append("exam.tex"); // numer grupy/ wersji, chuj tam wie
+            String fileNameOut = temp.ToString();
+
+            // tworzenie pliku wynikowego .tex i zapisanie od niego stringa
+
+            System.IO.File.WriteAllText(path, strOutput);
+            
+            /*StreamWriter writer = new StreamWriter(path);
+            writer.WriteLine(strOutput);
+            writer.Close();
+            */
+
+            return base.File(path, "text/plain", fileNameOut);
+
+        }
+
+        public ActionResult WriteToFilePdf(int id)
+        {
+            var strOutput = genKolEnt.EXAMS.Find(id).Content;
+            string fileNameTex = "egzamin1.tex";
+            string path = Path.Combine(Server.MapPath("~/Files"), fileNameTex);   
 
             // tworzenie pliku wynikowego .tex i zapisanie od niego stringa
 
@@ -114,31 +139,30 @@ namespace ExamGenerator.Controllers
 
             ConvertTexToPDF(path);
 
-            /*StreamWriter writer = new StreamWriter(path);
-            writer.WriteLine(strOutput);
-            writer.Close();
+            string fileNamePdf = "egzamin1.pdf";
+            string pathPdf = Path.Combine(Server.MapPath("~/Files"), fileNamePdf);
+            StringBuilder temp = new StringBuilder();
+            temp.Append(DateTime.Now.ToString()).Append("exam.pdf"); // numer grupy/ wersji, chuj tam wie
+            String fileNameOut = temp.ToString();
 
-            ConvertTexToPDF(path);
-            */
-
-            return base.File(path, "text/plain", fileName);
+            return base.File(pathPdf, "application/pdf", fileNameOut);
 
         }
 
         private void ConvertTexToPDF(string path)
         {
+            String dir = Server.MapPath("~/Files/");
             //convert tex to pdf
-            string programPath = Path.Combine(Server.MapPath("~/Files"), "pdflatex.exe");
-
+           
             ProcessStartInfo procStartInfo = new ProcessStartInfo("pdflatex", path);
             procStartInfo.CreateNoWindow = true;
             procStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            procStartInfo.UseShellExecute = false;
+            procStartInfo.WorkingDirectory = dir;
 
             Process process = new Process();
             process.StartInfo = procStartInfo;
             process.Start();
-
-            process.Kill();
         }
 
         private string ReadTemplate()
@@ -162,28 +186,6 @@ namespace ExamGenerator.Controllers
             reader.Close();
 
             return template;
-        }
-
-        [HttpPost]
-        public ActionResult Delete(int id = 0)
-        {
-            try
-            {
-                EXAMS exam = genKolEnt.EXAMS.Find(id);
-                foreach (var task in exam.TAGS.ToList())
-                {
-                    exam.TAGS.Remove(task);
-                }
-
-                genKolEnt.EXAMS.Remove(exam);
-                genKolEnt.SaveChanges();
-
-                return Content(Boolean.TrueString);
-            }
-            catch
-            {
-                return Content(Boolean.FalseString);
-            }
         }
 
     }
