@@ -22,7 +22,20 @@ namespace ExamGenerator.Controllers
 
         public ActionResult Generate()
         {
-            ViewBag.Tags = new MultiSelectList(genKolEnt.TAGS, "Id", "Name", null);
+            ViewBag.Tags = new MultiSelectList(genKolEnt.TAGS, "Id", "Name");
+
+            List<SelectListItem> listaInt = new List<SelectListItem>();
+            for (int i = 1; i <= 20; i++)
+            {
+                listaInt.Add(new SelectListItem()
+                {
+                    Value = i.ToString(),
+                    Text = i.ToString()
+                });
+            }
+
+            ViewBag.ListaInt = listaInt;
+
             return View();
         }
 
@@ -31,7 +44,7 @@ namespace ExamGenerator.Controllers
         {
             try
             {
-                ViewBag.Tags = new MultiSelectList(genKolEnt.TAGS, "Id", "Name", null);
+                ViewBag.Tags = new MultiSelectList(genKolEnt.TAGS, "Id", "Name");
 
                 if (ModelState.IsValid)
                 {
@@ -46,6 +59,8 @@ namespace ExamGenerator.Controllers
                     int numberOfQuestions = model.NumberOfQuestions; // zmienna
                                         
                     var taskList = genKolEnt.TASKS.Select(t => t).ToList();
+
+                    var used_tasks = model.TagIdList;
                     
                     for (int i = numberOfQuestions; i > 0; i--)
                     {

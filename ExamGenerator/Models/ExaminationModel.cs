@@ -9,8 +9,17 @@ namespace ExamGenerator.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<int> TagIdList { get; set; }
+        public List<ListOfTagIdList> TagIdList { get; set; }
         public int NumberOfQuestions { get; set; }
         public string Content { get; set; }
+    }
+    public class ListOfTagIdList
+    {
+        public List<int> IdList { get; set; }
+
+        public ListOfTagIdList()
+        {
+            IdList = new List<int>();
+        }
     }
 }

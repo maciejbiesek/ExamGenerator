@@ -7,7 +7,39 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="@Url.Content("~/Multiple_chosen/chosen.jquery.js")" type="text/javascript"></script>
-    <script>    $(".chzn-select").chosen(); </script>
+    <script >
+        $(".chzn-select").chosen();
+
+        var models = document.getElementById("NumberOfQuestions");
+        var modelsTable = document.getElementById("itemsmodel");
+
+        models.addEventListener("change", drawModels, false);
+
+        function drawModels() {
+            var modelsNum = parseInt(models.value);
+            var curModels = modelsTable.childElementCount;
+            var height = 48;//document.getElementById("lineWithTags").style.height;
+
+            for (var i = 1; i <= modelsNum; i++) {
+                var id_name = i.toString();
+                document.getElementById(id_name).style.display = 'block';
+                //document.getElementById(id_name).style.height = "29px";
+                //modelsTable.style.height = (height * i).toString() + "px";  //zmienic wysokosc na automatyczna auto !important
+            }
+
+            for (var i = modelsNum+1; i <= curModels; i++) {
+                var id_name = i.toString();
+                document.getElementById(id_name).style.display = 'none';
+                //document.getElementById(id_name).style.height = 0;
+            }
+
+        }
+
+        drawModels();
+
+    </script>
+
+
 }
 
 <link href="@Url.Content("~/Multiple_chosen/chosen.css")" rel="stylesheet" type="text/css" />
@@ -28,17 +60,28 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)
             <!--@@Html.ValidationMessageFor(model => model.Name)-->
-        </div>
+        </div><br>
 
         <div class="editor-label">Liczba zadań</div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.NumberOfQuestions)
-        </div>
+        <div class="editor-field" id="NumberOfModels">
+            @Html.DropDownListFor(model => model.NumberOfQuestions, (IEnumerable<SelectListItem>)ViewBag.ListaInt)
+        </div><br>
 
         <div class="editor-label">Tagi</div>
-        <div class="editor-field">
-            @Html.ListBoxFor(x => x.TagIdList, (MultiSelectList)ViewBag.Tags, new { @class = "chzn-select", data_placeholder = "Wybierz tagi..." })
-        </div><br>
+        <div class="tags" id="itemsmodel">
+            @for (int i = 1; i <= 20; i++)
+            {
+                string classToHide = i.ToString();
+                <div id="lineWithTags">
+                    <div class="editor-field" id=@classToHide style="margin-top:1em">
+                        @i @Html.ListBoxFor(x => x.TagIdList[i-1].IdList, (MultiSelectList)ViewBag.Tags, new { @class = "chzn-select", data_placeholder = "Wybierz tagi..." })
+                    </div>
+                </div>
+            }
+        </div>
+
+        <br>
+
         <p>
             <input type="submit" value="Zapisz zmiany" />
         </p>
@@ -50,4 +93,6 @@
 </div>
 
 
-
+<div id="select-box-container" style="display:none">
+    @Html.ListBoxFor(x => x.TagIdList, (MultiSelectList)ViewBag.Tags, new { @class = "chzn-select", data_placeholder = "Tags..." })
+</div>
