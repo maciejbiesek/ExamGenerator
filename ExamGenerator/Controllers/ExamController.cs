@@ -188,5 +188,29 @@ namespace ExamGenerator.Controllers
             return template;
         }
 
+
+        [HttpPost]
+        public ActionResult Delete(int id = 0)
+        {
+            try
+            {
+                EXAMS exam = genKolEnt.EXAMS.Find(id);
+                foreach (var task in exam.TAGS.ToList())
+                {
+                    exam.TAGS.Remove(task);
+                }
+
+                genKolEnt.EXAMS.Remove(exam);
+                genKolEnt.SaveChanges();
+
+                return Content(Boolean.TrueString);
+            }
+            catch
+            {
+                return Content(Boolean.FalseString);
+            }
+        }
+
+
     }
 }
