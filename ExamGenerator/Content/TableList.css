@@ -67,7 +67,7 @@ h1.name {
      text-align: center;
 }
 
-.columnName, .headerName       {    width: 60%;}
+.columnName, .headerName       {    width: 34%;}
 .deleteOption                  {    width: 10%;}
 .addOption                     {    width: 20%;}
 .columnTagsInTags              {    width: 90%;
@@ -124,6 +124,15 @@ button, input[type="submit"] {
   padding: 4px 10px 4px 10px;
   text-decoration: none;
   margin-right: 2px;
+}
+
+.examButton {
+   padding: 4px 50px 4px 50px;
+   margin-left: 405px;
+}
+
+.taskButton {
+  margin-left: 17px;
 }
 
 button:hover, input[type="submit"]:hover {

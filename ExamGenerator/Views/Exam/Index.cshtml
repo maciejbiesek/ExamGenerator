@@ -5,36 +5,7 @@
 }
 
 @section Scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var deleteLinkObj;
-            $('.delete-link').click(function () {
-                deleteLinkObj = $(this);
-                $('#delete-dialog').dialog('open');
-                return false;
-            });
-
-            $('#delete-dialog').dialog({
-                autoOpen: false, width: 400, resizable: false, modal: true,
-                buttons: {
-                    "Usuń": function () {
-                        $.post(deleteLinkObj[0].href, function (data) {
-                            if (data == '@Boolean.TrueString') {
-                                deleteLinkObj.closest("ul").hide('fast');
-                            }
-                            else {
-                                //(opcjonalnie) wyswietl blad
-                            }
-                        });
-                        $(this).dialog("close"); //
-                    },
-                    "Anuluj": function () {
-                        $(this).dialog("close");
-                    }
-                }
-            });
-        });
-    </script>
+    @Scripts.Render("~/bundles/listScript")
 }
 
 <hgroup class="title">
@@ -45,22 +16,25 @@
     <ul>
         <li>
             <span class="mainHeader">
-                <span class="columnName">Nazwa</span>
-                <span class="addOption"><button onclick="location.href = '@Url.Action("Generate")'">Generuj</button></span>            </span>
+                <span class="columnName"></span>
+                <span class="addOption"><button class="examButton" onclick="location.href = '@Url.Action("Generate")'">Generuj</button></span>            </span>
         </li>
         <li>
             <ul class="tabelRows">
                 <li>
                     <span class="topHeader">
                         <span class="columnName">Nazwa</span>
+                        <span class="columnName">Przedmiot</span>
                     </span>
                 </li>
                 @foreach (var exam in Model)
                 {
                     <li>
                         <span class="columnName">@exam.Name</span>
+                        <span class="columnName">@exam.Subject</span>
                         <span class="deleteOption"><a href="@Url.Action("Delete", "Exam", new { id = exam.Id })" class="delete-link"><img src="~/Images/Icons/delete.png" title="Usuń" class="icon" /></a></span>
-                        <span class="deleteOption"><a href="@Url.Action("WriteToFile", "Exam", new { id = exam.Id })"><img src="~/Images/Icons/x.png" title="Ściągnij jako .tex" class="icon" /></a></span>
+                        <span class="deleteOption"><a href="@Url.Action("WriteToFileTex", "Exam", new { id = exam.Id })" class="no-bg-change"><img src="~/Images/Icons/latex.png" title="Ściągnij plik tex" class="icon" /></a></span>
+                        <span class="deleteOption"><a href="@Url.Action("WriteToFilePdf", "Exam", new { id = exam.Id })" class="no-bg-change"><img src="~/Images/Icons/adobe.png" title="Ściągnij plik pdf" class="icon" /></a></span>
                     </li>
                 }
             </ul>

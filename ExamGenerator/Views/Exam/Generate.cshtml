@@ -1,7 +1,7 @@
 ﻿@model ExamGenerator.Models.ExaminationModel
 
 @{
-    ViewBag.Title = "Generuj egzamin";
+    ViewBag.Title = "Generuj_egzamin";
 }
 
 @section Scripts {
@@ -10,11 +10,13 @@
     <script>    $(".chzn-select").chosen(); </script>
 }
 
-<link href="@Url.Content("~/Multiple_chosen/chosen.css")" rel="stylesheet" type="text/css" />
+@section Styles {
+    @Styles.Render("~/Content/chosen")
+}
 
+<h2>Generuj egzamin:</h2>
 
-<h1>@ViewBag.Title</h1>
-<h2>@ViewBag.Message</h2>
+<span>@ViewBag.Message</span>
 
 @using (Html.BeginForm())
 {
@@ -28,6 +30,11 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)
             <!--@@Html.ValidationMessageFor(model => model.Name)-->
+        </div>
+
+        <div class="editor-label">Przedmiot</div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Subject)
         </div>
 
         <div class="editor-label">Liczba zadań</div>

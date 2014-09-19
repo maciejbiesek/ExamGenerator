@@ -42,7 +42,6 @@
     <h1>Dostępne zadania</h1>
 </hgroup>
 
-<span>@ViewBag.Message</span>
 
 <div id="tables">
     <ul>
@@ -51,7 +50,7 @@
                 <li>
                     <span class="topHeader">
                         <span class="headerName">Nazwa</span>
-                        <span class="addOption"><button onclick="location.href = '@Url.Action("Create")'">Dodaj nowe</button></span>
+                        <span class="addOption"><button class="taskButton" onclick="location.href = '@Url.Action("Create")'">Dodaj nowe</button></span>
                     </span>
                 </li>
                 @foreach (var task in Model)
