@@ -64,7 +64,7 @@
                                 <span class="columnName">@exam.Name</span>
 								<span class="columnName">@exam.Subject</span>
                                 <span class="deleteOption"><a href="@Url.Action("Delete", "Exam", new { id = exam.Id })" class="delete-link"><img src="~/Images/Icons/delete.png" title="Usuń" class="icon" /></a></span>
-                               <span class="deleteOption"><a href="@Url.Action("WriteToFileTex", "Exam", new { id = exam.Id })" class="no-bg-change"><img src="~/Images/Icons/latex.png" title="Ściągnij plik tex" class="icon" /></a></span>
+                                <span class="deleteOption"><a href="@Url.Action("WriteToFileTex", "Exam", new { id = exam.Id })" class="no-bg-change"><img src="~/Images/Icons/latex.png" title="Ściągnij plik tex" class="icon" /></a></span>
 								<span class="deleteOption"><a href="@Url.Action("WriteToFilePdf", "Exam", new { id = exam.Id })" class="no-bg-change"><img src="~/Images/Icons/adobe.png" title="Ściągnij plik pdf" class="icon" /></a></span>
                             </li>
                         </ul>
