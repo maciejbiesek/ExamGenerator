@@ -73,7 +73,8 @@ namespace ExamGenerator.Controllers
                     /////////////////////////////////////////////
 
                     //liczba wszystkich zad w bazie danych
-                    int numberOfTasks = genKolEnt.TASKS.Select(t => t).ToList().Count;
+                    var tasksList = genKolEnt.TASKS.Select(t => t).ToList();
+                    int numberOfTasks = tasksList.Count;
                     int numberOfQuestions = model.NumberOfQuestions; // zmienna                   
                     int liczbaGrup = model.NumberOfGroups;
                                         
@@ -116,21 +117,51 @@ namespace ExamGenerator.Controllers
                         Wierzcholek wierzcholek = new Wierzcholek(true, i, tab);
                         tabX[i] = wierzcholek;
                     }
+                                       
 
-                    // wczytaliśmy tablicę slotów i tagi do niej, czyli mamy co trzeba, tablicę zadań z bazy utworzymy sobie automatycznie
-                    for (int i = 0; i < numberOfTasks; i++) // będziemy tworzyć wierzchołki - zadania z bazy
+                    for (int i = 0; i < numberOfTasks; i++)  // dla każego zadania szukamy slotu, do którego pasuje
                     {
-                        var lista = genKolEnt.TASKS.Select(t => t.Id).ToList(); // robimy listę sąsiadów dla i-tego wierzchołka - zadania z bazy
+                        //var lista = genKolEnt.TASKS.Select(t => t.Id).ToList(); // robimy listę sąsiadów dla i-tego wierzchołka - zadania z bazy
+                        ArrayList lista = new ArrayList();
+                        for (int j = 0; j < numberOfQuestions; j++) // przeglądamy wszystkie wierzchołki - sloty
+                        {
+                            int l = tabX[j].getListaSasiadow().Length, k=0;
+                            while (k < l) // jeżeli dany slot ma na liście sąsiadów i-ty wierzchołek - zadanie z bazy i, to wrzucamy slot na listę sąsiadów wierzchołka i
+                            {
+                                if (tabX[j].getListaSasiadow()[k] == i)
+                                {
+                                    lista.Add(j);
+                                }
+                                k++;
+                            }
+                            
+                        }
                         
                         int[] tab = new int[lista.Count]; // musimy zmienić listę w tablicę, bo taki jest parametr w konstruktorze wierzchołka
                         lista.CopyTo(tab);
-                        Wierzcholek wierzcholek = new Wierzcholek(false, i, tab);
+                        Wierzcholek wierzcholek = new Wierzcholek(false, i, tab, tasksList[i].Id);
                         tabY[i] = wierzcholek;
                     }
 
                     Graf graf = new Graf(tabX, tabY); // wow, mamy graf
 
-                    
+                    List<Wierzcholek> listaDoWyrzucenia = new List<Wierzcholek>();
+                    foreach (Wierzcholek v in tabY)
+                    {
+                        if (v.getListaSasiadow().Length == 0)
+                            listaDoWyrzucenia.Add(v);
+                    }
+                    for (int j = 0; j < listaDoWyrzucenia.Count; j++)
+                    {
+                        graf = usunWierzcholek(graf, listaDoWyrzucenia[j]);
+                        for (int k = j + 1; k < listaDoWyrzucenia.Count; k++)
+                        {
+                            Wierzcholek wierzcholek = new Wierzcholek(listaDoWyrzucenia[k].getDwupodzial(), listaDoWyrzucenia[k].getNumer() - 1, listaDoWyrzucenia[k].getListaSasiadow());
+                            listaDoWyrzucenia[k] = wierzcholek;
+                        }
+                    }
+                    tabX = graf.getListaWierzcholkowX();
+                    tabY = graf.getListaWierzcholkowY();
 
                     // zrobimy sobie listę zbiorów
                     List<HashSet<Wierzcholek>> listaSkojarzen = new List<HashSet<Wierzcholek>>();
@@ -221,23 +252,20 @@ namespace ExamGenerator.Controllers
                                 wyjscie.Add(h);
                             }
                         }
-                        if (wyjscie.Count > 0) // jak nie da się ułożyć danej liczby zestawów, to program się wywala, stąd ten if
+                        if (wyjscie.Count > 0) // jak da się ułożyć daną liczby zestawów
                         {
-                            foreach (HashSet<Wierzcholek> h in wyjscie) // wypisujemy nasze wyjście (na potrzeby testowania)
-                            {
+                            foreach (HashSet<Wierzcholek> h in wyjscie)
+                            {   //lista egzaminow
                                 foreach (Wierzcholek v in h)
-                                {
-                                    var task = genKolEnt.TASKS.Find(v.getNumer());
+                                {   //lista zadan
+                                    var task = genKolEnt.TASKS.Find(v.getId());
                                     questions += task.Content + System.Environment.NewLine;
-                                    
-                                    //Console.Write(v.getNumer() + " ");
-                                    //lista zadan
+                                    //Console.Write(v.getId() + " ");                                    
                                 }
 
                                 qList.Add(questions);
-
-                                //Console.WriteLine("");
-                                //lista egzaminow
+                                questions = "";
+                                //Console.WriteLine("");                                
                             }
                             /*
                             Console.WriteLine("Czy chcesz ulozyc zestawy na kolejny rok? (T/N)");
@@ -319,7 +347,7 @@ namespace ExamGenerator.Controllers
                                     {
                                         foreach (Wierzcholek v in h)
                                         {
-                                            Console.Write(v.getNumer() + " ");
+                                            Console.Write(v.getId() + " ");
                                         }
                                         Console.WriteLine("");
                                     }
@@ -351,18 +379,19 @@ namespace ExamGenerator.Controllers
                         taskList.RemoveAt(index);
                     }*/
 
-                    int version = 1;
+                    int version = 1;                    
 
                     foreach (var question in qList)
                     {
-                        strOutput = strOutput.Replace("[ZADANIA]", question);
-                        strOutput = strOutput.Replace("[NAZWA]", model.Subject);
-                        strOutput = strOutput.Replace("[GRUPA]", version.ToString());
+                        var EGZAMIN = strOutput;
+                        EGZAMIN = EGZAMIN.Replace("[ZADANIA]", question);
+                        EGZAMIN = EGZAMIN.Replace("[NAZWA]", model.Subject);
+                        EGZAMIN = EGZAMIN.Replace("[GRUPA]", version.ToString());
 
                         EXAMS exam = new EXAMS();
 
                         exam.Name = model.Name;
-                        exam.Content = strOutput;
+                        exam.Content = EGZAMIN;
                         exam.Subject = model.Subject;
                         exam.Version = version;
                         exam.ExamDate = DateTime.Now;
@@ -374,7 +403,7 @@ namespace ExamGenerator.Controllers
                         version++;
                     }
 
-                    ViewBag.Message = String.Format("Wygenerowano {0} egzaminów.", qList.Count);
+                    ViewBag.Message = String.Format("Wygenerowano {0} egzamin(ów).", qList.Count);
 
                     genKolEnt.SaveChanges();       
 
@@ -388,34 +417,6 @@ namespace ExamGenerator.Controllers
                 ViewBag.Message = e.Message;
                 return View(model);
             }
-        }
-
-        private bool ScrambledEquals<T>(IEnumerable<T> list1, IEnumerable<T> list2)
-        {
-            var cnt = new Dictionary<T, int>();
-            foreach (T s in list1)
-            {
-                if (cnt.ContainsKey(s))
-                {
-                    cnt[s]++;
-                }
-                else
-                {
-                    cnt.Add(s, 1);
-                }
-            }
-            foreach (T s in list2)
-            {
-                if (cnt.ContainsKey(s))
-                {
-                    cnt[s]--;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            return cnt.Values.All(c => c == 0);
         }
 
         public ActionResult WriteToFileTex(int id)
@@ -563,7 +564,7 @@ namespace ExamGenerator.Controllers
                             else
                                 tab[j] = i.getListaSasiadow()[j + 1] - 1; // następnie "przesuwamy" numery w lewo i zmniejszamy o 1 ze względu na założenie naszej funkcji o numeracji
                         }
-                        Wierzcholek v = new Wierzcholek(false, i.getNumer(), tab); // tworzymy wierzchołek z nową listą sąsiadów
+                        Wierzcholek v = new Wierzcholek(false, i.getNumer(), tab, i.getId()); // tworzymy wierzchołek z nową listą sąsiadów
                         tabY[i.getNumer()] = v; // podmieniamy go w tablicy
                     }
                     else // tutaj lista sąsiadów pozostaje tej samej długości, ale trzeba obniżyć numery tych wierzchołków, które się "przesunęły"
@@ -576,7 +577,7 @@ namespace ExamGenerator.Controllers
                             else
                                 tab[j] = i.getListaSasiadow()[j] - 1;
                         }
-                        Wierzcholek v = new Wierzcholek(false, i.getNumer(), tab);
+                        Wierzcholek v = new Wierzcholek(false, i.getNumer(), tab, i.getId());
                         tabY[i.getNumer()] = v;
                     }
                 }
@@ -608,7 +609,7 @@ namespace ExamGenerator.Controllers
                             else
                                 tab[j] = i.getListaSasiadow()[j + 1] - 1;
                         }
-                        Wierzcholek v = new Wierzcholek(true, i.getNumer(), tab);
+                        Wierzcholek v = new Wierzcholek(true, i.getNumer(), tab, i.getId());
                         tabX[i.getNumer()] = v;
                     }
                     else
@@ -621,7 +622,7 @@ namespace ExamGenerator.Controllers
                             else
                                 tab[j] = i.getListaSasiadow()[j] - 1;
                         }
-                        Wierzcholek v = new Wierzcholek(true, i.getNumer(), tab);
+                        Wierzcholek v = new Wierzcholek(true, i.getNumer(), tab, i.getId());
                         tabX[i.getNumer()] = v;
                     }
                 }
@@ -631,7 +632,7 @@ namespace ExamGenerator.Controllers
                         tabY[i] = graf.getListaWierzcholkowY()[i];
                     else
                     {
-                        Wierzcholek v = new Wierzcholek(false, graf.getListaWierzcholkowY()[i].getNumer(), graf.getListaWierzcholkowY()[i + 1].getListaSasiadow());
+                        Wierzcholek v = new Wierzcholek(false, graf.getListaWierzcholkowY()[i].getNumer(), graf.getListaWierzcholkowY()[i + 1].getListaSasiadow(), graf.getListaWierzcholkowY()[i + 1].getId());
                         tabY[i] = v;
                     }
                 }
@@ -765,77 +766,94 @@ namespace ExamGenerator.Controllers
     }
 }
 
-    public class Graf
-    {
-        protected Wierzcholek[] listaWierzcholkowX; //zbior wierzcholkow podzbioru X (sloty), maja one wartosc logiczna true
-        protected Wierzcholek[] listaWierzcholkowY; //zbior wierzcholkow podzbioru Y (baza), maja one wartosc logiczna false
-        protected int liczbaWierzcholkow; //liczba wierzcholkow w grafie
+public class Graf
+{
+    protected Wierzcholek[] listaWierzcholkowX; //zbior wierzcholkow podzbioru X (sloty), maja one wartosc logiczna true
+    protected Wierzcholek[] listaWierzcholkowY; //zbior wierzcholkow podzbioru Y (baza), maja one wartosc logiczna false
+    protected int liczbaWierzcholkow; //liczba wierzcholkow w grafie
 
-        public void setListaWierzcholkowX(Wierzcholek[] listaWierzcholkowX)
-        {
-            this.listaWierzcholkowX = listaWierzcholkowX;
-        }
-        public void setListaWierzcholkowY(Wierzcholek[] listaWierzcholkowY)
-        {
-            this.listaWierzcholkowY = listaWierzcholkowY;
-        }
-        public Wierzcholek[] getListaWierzcholkowX()
-        {
-            return listaWierzcholkowX;
-        }
-        public Wierzcholek[] getListaWierzcholkowY()
-        {
-            return listaWierzcholkowY;
-        }
-        public int getLiczbaWierzcholkow()
-        {
-            return liczbaWierzcholkow;
-        }
-        public Graf(Wierzcholek[] listaWierzcholkowX, Wierzcholek[] listaWierzcholkowY)
-        {
-            setListaWierzcholkowX(listaWierzcholkowX);
-            setListaWierzcholkowY(listaWierzcholkowY);
-            liczbaWierzcholkow = listaWierzcholkowX.Length + listaWierzcholkowY.Length;
-        }
+    public void setListaWierzcholkowX(Wierzcholek[] listaWierzcholkowX)
+    {
+        this.listaWierzcholkowX = listaWierzcholkowX;
     }
-
-    public class Wierzcholek
+    public void setListaWierzcholkowY(Wierzcholek[] listaWierzcholkowY)
     {
-        protected bool dwupodzial; //true dla X (sloty), false dla Y (baza)
-        protected int numer; //numer wierzcholka w podzbiorze dwupodzialu
-        protected int[] listaSasiadow; //numery przyleglych wierzcholkow z podzbioru o przeciwnej wartosci logicznej
+        this.listaWierzcholkowY = listaWierzcholkowY;
+    }
+    public Wierzcholek[] getListaWierzcholkowX()
+    {
+        return listaWierzcholkowX;
+    }
+    public Wierzcholek[] getListaWierzcholkowY()
+    {
+        return listaWierzcholkowY;
+    }
+    public int getLiczbaWierzcholkow()
+    {
+        return liczbaWierzcholkow;
+    }
+    public Graf(Wierzcholek[] listaWierzcholkowX, Wierzcholek[] listaWierzcholkowY)
+    {
+        setListaWierzcholkowX(listaWierzcholkowX);
+        setListaWierzcholkowY(listaWierzcholkowY);
+        liczbaWierzcholkow = listaWierzcholkowX.Length + listaWierzcholkowY.Length;
+    }
+}
 
-        public void setDwupodzial(bool dwupodzial)
-        {
-            this.dwupodzial = dwupodzial;
-        }
-        public void setNumer(int numer)
-        {
-            this.numer = numer;
-        }
-        public void setListaSasiadow(int[] listaSasiadow)
-        {
-            this.listaSasiadow = listaSasiadow;
-        }
-        public bool getDwupodzial()
-        {
-            return dwupodzial;
-        }
-        public int getNumer()
-        {
-            return numer;
-        }
-        public int[] getListaSasiadow()
-        {
-            return listaSasiadow;
-        }
-        public Wierzcholek(bool dwupodzial, int numer, int[] listaSasiadow)
-        {
-            setDwupodzial(dwupodzial);
-            setNumer(numer);
-            setListaSasiadow(listaSasiadow);
-        }
-    }   
+public class Wierzcholek
+{
+    protected bool dwupodzial; //true dla X (sloty), false dla Y (baza)
+    protected int numer; //numer wierzcholka w podzbiorze dwupodzialu
+    protected int[] listaSasiadow; //numery przyleglych wierzcholkow z podzbioru o przeciwnej wartosci logicznej
+    protected int id; // numer zadania - tylko jeśli wierzchołkiem jest zadanie z bazy
+
+    public void setDwupodzial(bool dwupodzial)
+    {
+        this.dwupodzial = dwupodzial;
+    }
+    public void setNumer(int numer)
+    {
+        this.numer = numer;
+    }
+    public void setListaSasiadow(int[] listaSasiadow)
+    {
+        this.listaSasiadow = listaSasiadow;
+    }
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+    public bool getDwupodzial()
+    {
+        return dwupodzial;
+    }
+    public int getNumer()
+    {
+        return numer;
+    }
+    public int[] getListaSasiadow()
+    {
+        return listaSasiadow;
+    }
+    public int getId()
+    {
+        return id;
+    }
+    public Wierzcholek(bool dwupodzial, int numer, int[] listaSasiadow)
+    {
+        setDwupodzial(dwupodzial);
+        setNumer(numer);
+        setListaSasiadow(listaSasiadow);
+    }
+    public Wierzcholek(bool dwupodzial, int numer, int[] listaSasiadow, int id)
+    {
+        setDwupodzial(dwupodzial);
+        setNumer(numer);
+        setListaSasiadow(listaSasiadow);
+        setId(id);
+    }
+    
+}
 
 
 
